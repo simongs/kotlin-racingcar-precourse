@@ -1,5 +1,6 @@
 package racing.entity
 
+import racing.support.CarMovementDecider
 import racing.support.printlnWithTime
 
 
@@ -8,21 +9,25 @@ class RacingGame(private val participants: List<Participant>, private val totalT
     private val histories:ArrayList<RacingHistoryPerCount> = arrayListOf()
 
     fun play() {
-        while (currentTryCount > totalTryCount) {
-            printlnWithTime("execution")
-            currentTryCount++
-
+        while (currentTryCount < totalTryCount) {
             val racingResults:ArrayList<ParticipantRacingResult> = arrayListOf()
             participants.forEach {
-                // TODO 전진여부를 판단하는 기능 추가 필요
-                racingResults.add(ParticipantRacingResult(it, true))
+                racingResults.add(ParticipantRacingResult(it, CarMovementDecider.isMovable()))
             }
 
-            histories.add(RacingHistoryPerCount(currentTryCount, racingResults))
+            histories.add(RacingHistoryPerCount(++currentTryCount, racingResults))
         }
     }
 
     fun printWinParticipantsInfo() {
+        printlnWithTime("실행 결과")
 
+        val participantMap = participants.associateWith { 0 }
+
+        for (history in histories.sortedBy { it.tryIndex }) {
+            printlnWithTime(history)
+        }
+
+        printlnWithTime("최종 우승자 : pobi, jun")
     }
 }

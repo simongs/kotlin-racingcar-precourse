@@ -13,6 +13,7 @@ fun main() {
         printlnWithTime("유효하지 않은 참가자 정보를 입력하였습니다. ($participantInfoLine)")
     }
 
+    printlnWithTime("시도할 회수는 몇회인가요?")
     val totalTryCount = readln()
     if (!RacingGameValidator.validInputTotalTryCount(totalTryCount)) {
         printlnWithTime("유효하지 않은 숫자 정보를 입력하였습니다. ($totalTryCount)")
@@ -22,6 +23,8 @@ fun main() {
 
     val racingGame = RacingGame(participants, totalTryCount.toInt())
 
+    racingGame.play()
 
+    racingGame.printWinParticipantsInfo()
 
 }
