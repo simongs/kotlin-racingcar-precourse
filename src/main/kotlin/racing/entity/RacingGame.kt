@@ -5,15 +5,20 @@ import racing.support.printlnWithTime
 
 class RacingGame(private val participants: List<Participant>, private val totalTryCount: Int) {
     private var currentTryCount:Int = 0
+    private val histories:ArrayList<RacingHistoryPerCount> = arrayListOf()
 
-    // 참가자 목록을 가지고
-    // 총 시도횟수 정보를 가지고
-    // 현재 시도된 횟수 정보를 가지고
-    // 각 참가자가 진행한 정보를 가진다.
     fun play() {
         while (currentTryCount > totalTryCount) {
             printlnWithTime("execution")
             currentTryCount++
+
+            val racingResults:ArrayList<ParticipantRacingResult> = arrayListOf()
+            participants.forEach {
+                // TODO 전진여부를 판단하는 기능 추가 필요
+                racingResults.add(ParticipantRacingResult(it, true))
+            }
+
+            histories.add(RacingHistoryPerCount(currentTryCount, racingResults))
         }
     }
 
