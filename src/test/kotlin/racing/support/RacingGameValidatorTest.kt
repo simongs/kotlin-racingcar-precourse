@@ -7,14 +7,14 @@ class RacingGameValidatorTest {
 
     @Test
     fun test_validInputParticipantInfoLine_single_participant_valid_case() {
-        assertTrue(RacingGameValidator.validInputParticipantInfoLine("user"))
-        assertTrue(RacingGameValidator.validInputParticipantInfoLine("user1"))
+        assertTrue(RacingGameValidator.validInputPlayerInfoLine("user"))
+        assertTrue(RacingGameValidator.validInputPlayerInfoLine("user1"))
     }
 
     @Test
-    fun test_validInputParticipantInfoLine_single_participant_invalid_case() {
-        assertFalse(RacingGameValidator.validInputParticipantInfoLine("participant"))
-        assertFalse(RacingGameValidator.validInputParticipantInfoLine("user10"))
+    fun test_validInputParticipantInfoLine_single_player_invalid_case() {
+        assertFalse(RacingGameValidator.validInputPlayerInfoLine("participant"))
+        assertFalse(RacingGameValidator.validInputPlayerInfoLine("user10"))
     }
 
     @Test

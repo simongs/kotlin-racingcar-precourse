@@ -4,10 +4,10 @@ package racing.support
 object RacingGameValidator {
     private const val PARTICIPANT_MAX_LENGTH:Int = 5
 
-    fun validInputParticipantInfoLine(inputLine:String) : Boolean {
-        val participantList = inputLine.split(",")
-        for (participant in participantList) {
-            if (participant.isBlank() || participant.length > PARTICIPANT_MAX_LENGTH) {
+    fun validInputPlayerInfoLine(inputLine:String) : Boolean {
+        val playerList = inputLine.split(",")
+        for (player in playerList) {
+            if (player.isBlank() || player.length > PARTICIPANT_MAX_LENGTH) {
                 return false
             }
         }
