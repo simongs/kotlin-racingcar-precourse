@@ -22,10 +22,21 @@ class RacingGame(private val players: List<Player>, private val totalTryCount: I
     fun printWinPlayersInfo() {
         printlnWithTime("실행 결과")
 
-        val playerReduceMap = players.associateWith { 0 }
+        val playerReduceMap = players.associateWith { 0 }.toMutableMap()
 
         for (history in histories.sortedBy { it.tryIndex }) {
-            printlnWithTime(history)
+
+            printlnWithTime("===== [${history.tryIndex}] 번째 결과 =======")
+            history.racingResults.forEach {
+                if (it.isMove) {
+                    playerReduceMap[it.player] = playerReduceMap[it.player]!! + 1
+                }
+            }
+
+            playerReduceMap.forEach { (key, value) ->
+                val text = "-".repeat(value)
+                printlnWithTime("${key.name} : $text")
+            }
         }
 
         printlnWithTime("최종 우승자 : pobi, jun")
